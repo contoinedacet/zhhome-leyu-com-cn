@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 壹号娱乐信息整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fae8d0 0%, #f7d5b3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #2e241e;
+        }
+        .page-container {
+            max-width: 1120px;
+            width: 100%;
+        }
+        /* 标题区 */
+        .archive-header {
+            background: rgba(255, 247, 235, 0.7);
+            backdrop-filter: blur(3px);
+            border-radius: 48px 48px 24px 24px;
+            padding: 2.5rem 2rem 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            box-shadow: 0 12px 28px rgba(140, 85, 45, 0.12);
+            border: 1px solid #fff5e0;
+        }
+        .archive-header h1 {
+            font-size: 2.6rem;
+            font-weight: 550;
+            letter-spacing: 2px;
+            color: #422f27;
+            background: linear-gradient(to right, #613f2b, #8f5e3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.6rem;
+        }
+        .archive-header .sub {
+            color: #634a3a;
+            font-size: 1.1rem;
+            border-bottom: 2px dotted #d8b694;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+        /* 卡片通用 */
+        .card {
+            background: #fffffffa;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(110, 70, 40, 0.08);
+            border: 1px solid #f2e3d2;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 12px 28px rgba(140, 85, 45, 0.12);
+        }
+        .card-header {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #3e2c22;
+            border-left: 8px solid #c29a74;
+            padding-left: 1rem;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.8px;
+        }
+        /* 目录网格 */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            list-style: none;
+            padding: 0;
+        }
+        .index-grid li {
+            background: #f6ede4;
+            border-radius: 60px;
+            padding: 0.7rem 1.5rem;
+            font-weight: 480;
+            color: #3f2f25;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #ead9c9;
+            transition: 0.15s;
+            font-size: 0.98rem;
+        }
+        .index-grid li::before {
+            content: "📄";
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        .index-grid li:hover {
+            background: #e7d4c0;
+            border-color: #b68d6b;
+            transform: translateY(-2px);
+        }
+        /* 说明区 */
+        .desc-block {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .desc-block p {
+            font-size: 1.02rem;
+            color: #2f241e;
+        }
+        .highlight-link {
+            background: linear-gradient(120deg, #f7e1cb 0%, #f7e1cb 40%, transparent 60%);
+            padding: 0 6px;
+            font-weight: 500;
+            border-radius: 12px;
+        }
+        .keyword-tag {
+            display: inline-block;
+            background: #dfc9b4;
+            color: #2f1d14;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            font-size: 0.9rem;
+        }
+        /* 提示区 */
+        .tip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            padding: 0.5rem 0;
+        }
+        .tip-item {
+            flex: 1 1 180px;
+            background: #fff8f1;
+            border-radius: 40px;
+            padding: 0.9rem 1.4rem;
+            border: 1px solid #eddccb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tip-item span:first-child {
+            background: #c49f7d;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        /* 相关信息区 */
+        .info-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .info-col {
+            flex: 2 1 200px;
+        }
+        .info-col ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-col li {
+            margin-bottom: 0.65rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .info-col li::before {
+            content: "·";
+            color: #a87b56;
+            font-weight: 700;
+            font-size: 1.4rem;
+            position: absolute;
+            left: 0;
+            line-height: 1;
+        }
+        .info-col .sub-label {
+            color: #7b5f4a;
+            font-size: 0.9rem;
+            font-weight: 450;
+            display: block;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.3px;
+        }
+        /* 链接样式 */
+        a {
+            color: #7b4d2b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid #d6b294;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        a:hover {
+            color: #4d2f1d;
+            border-bottom-color: #9d6d49;
+        }
+        .btn-link {
+            display: inline-block;
+            background: #f2e3d6;
+            padding: 0.6rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #3e2a1d;
+            border: 1px solid #dcc1ab;
+            transition: 0.12s;
+            text-decoration: none;
+            border-bottom: none;
+        }
+        .btn-link:hover {
+            background: #e1ccb8;
+            border-color: #b48b67;
+            color: #2d1d14;
+            transform: scale(0.97);
+        }
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .faq-q {
+            font-weight: 500;
+            color: #3d2a1e;
+            background: #f3e6da;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        .faq-a {
+            padding-left: 1.6rem;
+            color: #3b2d24;
+            border-left: 3px solid #dbbc9d;
+        }
+        hr {
+            border: none;
+            border-top: 2px dashed #dcc1ab;
+            margin: 1.5rem 0;
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #6f5543;
+            text-align: center;
+            padding: 2rem 0 0.5rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .archive-header h1 {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            .index-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .tip-item {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <!-- 标题 / 知识库标识 -->
+    <div class="archive-header">
+        <h1>📋 资料索引 · 信息整理</h1>
+        <div class="sub">基于公开资料汇编 · 结构参考号 21f40bbd</div>
+    </div>
+
+    <!-- 卡片：目录感布局  -->
+    <div class="card">
+        <div class="card-header">📂 内容目录（概要）</div>
+        <ul class="index-grid">
+            <li>平台背景与定位</li>
+            <li>功能模块一览</li>
+            <li>使用场景参考</li>
+            <li>常见问题摘要</li>
+            <li>相关说明与提示</li>
+            <li>信息索引入口</li>
+        </ul>
+        <div style="margin-top: 1rem; font-size: 0.95rem; color: #4d382b;">
+            ⚡ 以下卡片依次展开各模块内容，便于快速定位。
+        </div>
+    </div>
+
+    <!-- 说明区：平台与背景 -->
+    <div class="card">
+        <div class="card-header">📖 关于资料整理对象</div>
+        <div class="desc-block">
+            <p>
+                本页面向对 <span class="highlight-link"><a href="https://cn-game-1hao.com">壹号娱乐</a></span> 
+                相关信息进行系统整理的访客，提供结构化索引与常识性说明。
+                平台以游戏及互动内容为主体，整合了多种线上娱乐资源，本节概述其基本轮廓。
+            </p>
+            <p>
+                根据公开可查的信息，<span class="keyword-tag">壹号娱乐</span> 这一名称指向一个综合性的游戏相关服务平台，
+                在用户社群中积累了一定的讨论与资料。以下内容为基于常见问题与功能板块的整理，
+                不构成官方立场或保证。
+            </p>
+        </div>
+    </div>
+
+    <!-- 特点 / 模块 卡片 -->
+    <div class="card">
+        <div class="card-header">🧩 常见特点与模块（摘要）</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem;">
+            <div style="flex:1; min-width:150px;">
+                <div style="font-weight: 500; margin-bottom: 0.5rem;">🔹 内容方向</div>
+                <ul style="list-style: none; padding-left: 0.5rem;">
+                    <li style="margin-bottom: 0.4rem;">· 游戏资讯与资料</li>
+                    <li style="margin-bottom: 0.4rem;">· 互动功能入口</li>
+                    <li style="margin-bottom: 0.4rem;">· 用户交流信息</li>
+                </ul>
+            </div>
+            <div style="flex:1; min-width:150px;">
+                <div style="font-weight: 500; margin-bottom: 0.5rem;">🔸 索引价值</div>
+                <ul style="list-style: none; padding-left: 0.5rem;">
+                    <li style="margin-bottom: 0.4rem;">· 整理常见分类</li>
+                    <li style="margin-bottom: 0.4rem;">· 提炼操作要点</li>
+                    <li style="margin-bottom: 0.4rem;">· 汇总参考链接</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top: 1.2rem; background: #f7ede3; border-radius: 28px; padding: 1rem 1.6rem;">
+            <span style="font-weight: 500;">📌 提示：</span> 具体服务内容可能随时间调整，建议以平台实际展示为准。
+        </div>
+    </div>
+
+    <!-- 提示区：使用建议/注意事项 -->
+    <div class="card">
+        <div class="card-header">💡 提示区 · 查阅建议</div>
+        <div class="tip-list">
+            <div class="tip-item"><span>1</span> 优先阅读各版块说明</div>
+            <div class="tip-item"><span>2</span> 注意核对资料时间</div>
+            <div class="tip-item"><span>3</span> 兼容不同设备显示</div>
+            <div class="tip-item"><span>4</span> 善用关键词索引</div>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.95rem; color: #4b372c;">
+            以上提示基于一般信息整理经验，适用于本索引页涉及的内容范围。
+        </p>
+    </div>
+
+    <!-- 相关信息区 (FAQ摘要 + 其他信息) -->
+    <div class="card">
+        <div class="card-header">📎 相关信息区</div>
+        <div class="info-group">
+            <div class="info-col">
+                <div class="sub-label">❓ FAQ 摘要</div>
+                <div class="faq-mini">
+                    <div class="faq-q">Q: 如何获取更多资料？</div>
+                    <div class="faq-a">可通过平台内索引及社区分享进一步查询，主要入口为 <a href="https://cn-game-1hao.com">壹号娱乐</a> 相关页面。</div>
+                    <div class="faq-q">Q: 资料更新频率？</div>
+                    <div class="faq-a">本页为静态整理，不自动同步，建议定期访问来源站获取新信息。</div>
+                </div>
+            </div>
+            <div class="info-col">
+                <div class="sub-label">📌 参考条目</div>
+                <ul>
+                    <li>平台名称常用表述：壹号娱乐</li>
+                    <li>涉及领域：线上游戏、互动内容</li>
+                    <li>常见用户问询：功能位置、规则说明</li>
+                    <li>整理时间：2025年4月 (版本 21)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 带链接的句子，自然嵌入 -->
+    <div style="background: #fcf5ec; border-radius: 90px; padding: 1rem 1.8rem; margin-bottom: 1.5rem; border: 1px solid #eddccc; text-align: center;">
+        <span style="font-weight: 450;">📬 如希望直接查阅平台内容，可前往 </span>
+        <a href="https://cn-game-1hao.com" class="btn-link">壹号娱乐</a>
+        <span style="font-weight: 450;"> 浏览当前信息。</span>
+    </div>
+
+    <!-- 额外说明 / 知识库定位 -->
+    <div class="card" style="background: #faf3ea;">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span style="background: #c59e7b; color: white; border-radius: 40px; padding: 0.2rem 1.2rem;">🔍 整理角度</span>
+            <span>本索引页从资料汇编、目录结构、提示与 FAQ 等维度组织内容，便于检索与参考。</span>
+        </div>
+        <hr>
+        <p style="font-size: 0.95rem;">
+            ⚠️ 所有描述基于公开信息与常规整理，不构成对平台功能的完整保证。
+            <br>如需获取精准介绍，建议直接浏览 <a href="https://cn-game-1hao.com">壹号娱乐</a> 官方页面。
+        </p>
+    </div>
+
+    <div class="footer-note">
+        — 资料索引页·结构号 21f40bbd — <br>
+        内容仅作学习与参考用途。
+    </div>
+</div>
+</body>
+</html>
