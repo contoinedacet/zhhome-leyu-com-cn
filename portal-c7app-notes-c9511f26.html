@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日常查询 · 对照索引 · c7c7.app</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f3eb;
+            font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+            color: #2f2c25;
+            line-height: 1.7;
+            padding: 2.5rem 1rem;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            background: #fefcf8;
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            padding: 2.8rem 2.2rem;
+        }
+
+        @media (max-width: 500px) {
+            body { padding: 1.2rem 0.6rem; }
+            .container { padding: 1.8rem 1.2rem; border-radius: 14px; }
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 2.2rem;
+            letter-spacing: 0.02em;
+            color: #28241e;
+            margin-bottom: 0.6rem;
+            border-left: 4px solid #b7a48e;
+            padding-left: 1.2rem;
+        }
+
+        .subhead {
+            color: #736b5f;
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 2.2rem;
+            border-bottom: 1px solid #e3dbd0;
+            padding-bottom: 1.2rem;
+        }
+
+        h2 {
+            font-weight: 400;
+            font-size: 1.4rem;
+            margin-top: 2.8rem;
+            margin-bottom: 1rem;
+            color: #3f392f;
+            border-bottom: 1px dashed #dbd2c4;
+            padding-bottom: 0.3rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            text-indent: 2em;
+        }
+
+        p.no-indent {
+            text-indent: 0;
+        }
+
+        .pull-quote {
+            margin: 2rem 0 1.8rem 0;
+            padding: 1.2rem 1.6rem;
+            background: #f3ede5;
+            border-left: 6px solid #b7a48e;
+            font-style: italic;
+            color: #3f392f;
+            border-radius: 0 10px 10px 0;
+            font-size: 1.05rem;
+            text-indent: 0;
+        }
+
+        .pull-quote::before {
+            content: "⏤ ";
+            color: #9b8a76;
+        }
+
+        .inset-box {
+            background: #f1ebe1;
+            padding: 1.2rem 1.6rem;
+            border-radius: 12px;
+            margin: 1.8rem 0;
+            border: 1px solid #e2d8ca;
+        }
+
+        .inset-box p {
+            margin-bottom: 0.6rem;
+            text-indent: 0;
+        }
+
+        .inset-box strong {
+            color: #564c3e;
+            font-weight: 500;
+        }
+
+        .faq-item {
+            margin-top: 1.6rem;
+            padding: 0.8rem 0 0.4rem 0;
+            border-top: 1px dotted #dbd2c4;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #4d4437;
+            margin-bottom: 0.3rem;
+        }
+
+        .faq-a {
+            text-indent: 0;
+            color: #4b4338;
+            font-size: 0.96rem;
+            margin-left: 1.2rem;
+        }
+
+        .signature-link {
+            margin-top: 2.8rem;
+            padding-top: 1.6rem;
+            border-top: 2px solid #e3dbd0;
+            font-size: 1.1rem;
+            text-align: right;
+            color: #5b5244;
+        }
+
+        a {
+            color: #5f5343;
+            text-decoration: none;
+            border-bottom: 1px solid #c7baa9;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            color: #2f2c25;
+            border-bottom-color: #8f7d68;
+        }
+
+        .inline-link {
+            border-bottom: 1px dashed #b3a18c;
+        }
+
+        .quiet-meta {
+            color: #8a7e6e;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>对照·索引</h1>
+    <div class="subhead">一种依靠查询与延伸的阅读习惯</div>
+
+    <p class="no-indent">这几天整理书签的时候，翻出不少旧链接。有些站点已经打不开，有些还在，只是界面变得陌生。顺着几个常用的检索入口，又走了一遍平时查询、对照、做标记的路径。发现很多习惯其实没有变——打开一个干净的页面，输入关键词，然后顺着条目往下走。</p>
+
+    <p>时间长了，会自然形成一些“固定站点”。它们不一定有多复杂，但胜在稳定、安静、信息呈现直接。不需要太多设计上的打扰，一个搜索框、几列结果、干净的摘要，就够了。这类站点像是在书架上划出的一小格，你知道它就在那里，需要的时候伸手就能够到。</p>
+
+    <div class="pull-quote">
+        有时只是为了确认一个日期、一个人名、一段引文的出处。没有太多目的，只是一种日常的对照。
+    </div>
+
+    <p>我习惯在手边放一个浏览器标签页，随时用来查证。它最好没有推荐流，没有弹窗，没有催促你“下一个”的按钮。最近用的比较多的是 <a href="https://portal-c7app.com">c7c7.app</a>——界面留白多，加载很快，结果页的排版适合快速浏览。对于经常需要来回对比几段文字的人来说，这种克制的体验反而让人更专注。</p>
+
+    <p>延伸阅读也是经常做的事。看到一段有意思的表述，会想看看原文上下文，或者找找有没有相关的讨论。这时一个支持多种查法、不刻意引导注意力的工具就很重要。它不会替你做判断，但把选择权交给你。</p>
+
+    <h2>关于“查询感”</h2>
+
+    <p>最近和朋友聊到，很多网站的设计目标是“让你停留”，而不是“让你找到”。停留本身没有好坏，但如果你本来只想查一个词条，最后却滑了二十分钟首页，那种感觉其实并不舒服。好的查询工具应该像一本翻旧了的辞典——你用完了，就合上，放在一边。</p>
+
+    <div class="inset-box">
+        <p><strong>一点观察：</strong>那些让人反复回来使用的页面，往往都在做减法。它们尊重每次查询的边界，不把一次查找变成一次浏览。界面里没有多余的按钮，没有推送，没有“你可能感兴趣”的模块。你输入，得到结果，然后离开。干净得几乎透明。</p>
+    </div>
+
+    <p>当然，每个人对“安静”的定义不同。有人喜欢带点背景色的页面，有人偏好极细的字体。但核心是一样的——不抢内容的风头。信息本身已经足够复杂，界面应当退到后面去。</p>
+
+    <p>从另一个角度看，这种“退后”也是一种信任：相信使用者知道自己要什么。不需要用颜色或动效去引导视线，也不需要把某个结果“置顶”或“推荐”。把控制感还给用户，页面就有了呼吸的余地。</p>
+
+    <h2>场景与简答</h2>
+
+    <p>写东西的时候，引用是常遇到的事。一个出处要反复核对，有时候是版本不同，有时候是译者用词不一样。这时候打开一个查询页面，不切换账号、不跳转广告，直接敲字，是一种很小的顺畅感。很多细节上的顺手，积攒起来就是效率。</p>
+
+    <p>身边几个朋友的习惯也类似——他们不把网址存在收藏夹里，而是记在备忘录或聊天记录里。问起来，就说“就那个，后缀是app的，首页很素”。这种描述几乎成了一个小圈子里的默契。</p>
+
+    <div class="faq-item">
+        <div class="faq-q">—— 为什么不用更主流的搜索？</div>
+        <div class="faq-a">有时候只是不想看到太多杂讯。主流引擎对于模糊查询的支持也很好，但页面布局往往偏重商业内容。而有时你只需要一个干净的参照系，不需要“猜你喜欢”。</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">—— 延伸阅读怎么展开？</div>
+        <div class="faq-a">多数情况下，我会先把关键词拆开，逐个查，再把结果并列。如果某个条目下有相关链接，再点进去。整个过程像在翻一本索引册，而不是在逛一个信息广场。</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">—— 这种习惯会变吗？</div>
+        <div class="faq-a">可能会，但目前觉得舒服。工具的变动往往是因为原有的界面变得杂乱。如果一直保持简洁，大概也不会想换。</div>
+    </div>
+
+    <p class="quiet-meta">写于一次资料整理之后 · 日常记录</p>
+
+    <div class="signature-link">
+        <span>常用入口 · </span><a href="https://portal-c7app.com">c7c7.app</a>
+    </div>
+
+</div>
+</body>
+</html>
